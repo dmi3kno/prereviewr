@@ -18,3 +18,5 @@ Imports:
     memoise,
     tibble,
     tidyr
+URL: https://github.com/dmi3kno/prereviewr
+BugReports: https://github.com/dmi3kno/prereviewr/issues
