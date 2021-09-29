@@ -1,0 +1,2707 @@
+{
+  "info": {
+    "title": "PREreview API",
+    "description": "Review preprints & build community",
+    "version": "2.0"
+  },
+  "basePath": "/api/v2",
+  "swagger": "2.0",
+  "paths": {
+    "/resolve": {
+      "get": {
+        "responses": {},
+        "operationId": "GetResolvePreprints",
+        "summary": "Endpoint to GET and resolve preprint metadata",
+        "parameters": []
+      }
+    },
+    "/preprints": {
+      "post": {
+        "responses": {},
+        "operationId": "PostPreprints",
+        "summary": "Endpoint to POST a new preprint",
+        "parameters": []
+      },
+      "get": {
+        "responses": {},
+        "parameters": [
+          {
+            "type": "integer",
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "required": false,
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "required": false,
+            "name": "asc",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "search",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "communities",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "filters",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "tags",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "include_images",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "sort",
+            "in": "query"
+          }
+        ],
+        "operationId": "GetPreprints",
+        "summary": "Endpoint to GET multiple preprints and their associated reviews (both full-length and rapid), as well as requests for review."
+      }
+    },
+    "/preprints/{id}": {
+      "get": {
+        "responses": {},
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Preprint ID",
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "operationId": "GetPreprint",
+        "summary": "Endpoint to GET a single preprint, as well as its full-length reviews, rapid reviews, and requests for review.",
+        "required": true
+      },
+      "put": {
+        "responses": {},
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Preprint ID",
+            "required": true,
+            "name": "id",
+            "in": "path"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {},
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        ],
+        "operationId": "PutPreprint",
+        "summary": "Endpoint to PUT updates on preprints",
+        "required": true
+      },
+      "delete": {
+        "responses": {},
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Preprint ID",
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "operationId": "DeletePreprint",
+        "summary": "Endpoint to DELETE preprints",
+        "required": true
+      }
+    },
+    "/users": {
+      "get": {
+        "responses": {},
+        "operationId": "GetUsers",
+        "summary": "Endpoint to GET all users.",
+        "parameters": []
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "responses": {},
+        "parameters": [
+          {
+            "type": "string",
+            "description": "User id",
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "operationId": "GetUser",
+        "summary": "Endpoint to GET a single user by ID.",
+        "required": true
+      },
+      "put": {
+        "responses": {},
+        "parameters": [
+          {
+            "type": "string",
+            "description": "User id",
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "operationId": "PutUser",
+        "summary": "Endpoint to PUT a single user by ID."
+      },
+      "delete": {
+        "responses": {},
+        "parameters": [
+          {
+            "type": "string",
+            "description": "User id",
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "operationId": "DeleteUser",
+        "summary": "Endpoint to DELETE a single user by ID.",
+        "required": true
+      }
+    },
+    "/users/{id}/contacts": {
+      "post": {
+        "responses": {},
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "description": "User id",
+            "required": true,
+            "name": "id",
+            "in": "path"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "schema": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        ],
+        "operationId": "PostUserContacts",
+        "summary": "Endpoint to POST new contacts for a single user."
+      },
+      "delete": {
+        "responses": {},
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Contacts id",
+            "required": true,
+            "name": "cid",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "User id",
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "operationId": "DeleteUserContacts",
+        "summary": "Endpoint to DELETE contacts for a single user."
+      }
+    },
+    "/users/{id}/contacts/{cid}": {
+      "put": {
+        "responses": {},
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "description": "User id",
+            "required": true,
+            "name": "id",
+            "in": "path"
+          },
+          {
+            "type": "string",
+            "description": "Contacts id",
+            "required": true,
+            "name": "cid",
+            "in": "path"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "schema": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                },
+                "isNotified": {
+                  "type": "boolean"
+                },
+                "isPublic": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        ],
+        "operationId": "PutUserContacts",
+        "summary": "Endpoint to PUT contacts for a single user."
+      }
+    },
+    "/valid-contacts/{token}": {
+      "get": {
+        "responses": {},
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Email validation token",
+            "required": true,
+            "name": "token",
+            "in": "path"
+          }
+        ],
+        "operationId": "GetValidateContact",
+        "summary": "Endpoint to validate an email.",
+        "required": true
+      }
+    },
+    "/users/{id}/keys": {
+      "post": {
+        "responses": {},
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "description": "User id",
+            "required": true,
+            "name": "id",
+            "in": "path"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "app": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "app"
+              ],
+              "additionalProperties": false
+            }
+          }
+        ],
+        "operationId": "PostUserKey",
+        "summary": "Endpoint to POST new API key for a single user."
+      },
+      "delete": {
+        "responses": {},
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Key id",
+            "required": true,
+            "name": "kid",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "User id",
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "operationId": "DeleteUserKeys",
+        "summary": "Endpoint to DELETE key for a single user."
+      }
+    },
+    "/full-reviews": {
+      "post": {
+        "responses": {},
+        "operationId": "PostFullReviews",
+        "summary": "Endpoint to POST full-length drafts of reviews. \n          The text contents of a review must be in the 'contents' property of the request body. \n          Returns a 201 if successful.",
+        "parameters": []
+      },
+      "get": {
+        "responses": {},
+        "parameters": [
+          {
+            "type": "integer",
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "required": false,
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "required": false,
+            "name": "asc",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "required": false,
+            "name": "is_published",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "can_edit",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "include_images",
+            "in": "query"
+          }
+        ],
+        "operationId": "GetFullReviews",
+        "summary": "Endpoint to GET all full-length reviews. If successful, returns a 200 and an array of reviews in the `data` property of the response body."
+      }
+    },
+    "/preprints/{pid}/full-reviews": {
+      "get": {
+        "responses": {},
+        "parameters": [
+          {
+            "type": "integer",
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "required": false,
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "required": false,
+            "name": "asc",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "required": false,
+            "name": "is_published",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "can_edit",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "include_images",
+            "in": "query"
+          },
+          {
+            "name": "pid",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "operationId": "GetPreprintFullReviews",
+        "summary": "Endpoint to GET all full-length reviews of a specific preprint. If successful, returns a 200 and an array of reviews in the `data` property of the response body."
+      }
+    },
+    "/full-reviews/{id}": {
+      "put": {
+        "responses": {},
+        "operationId": "PutFullReview",
+        "summary": "Endpoint to PUT updates to a specific full-length review. If successful, returns a 204.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "get": {
+        "responses": {},
+        "operationId": "GetFullReview",
+        "summary": "Endpoint to GET a specific full-length review. If successful, returns a 200 and a single-member array of the review object in the `data` property of the response body. The contents of the review's latest draft is in the `contents` property of the review object.",
+        "required": true,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "delete": {
+        "responses": {},
+        "operationId": "DeleteFullReview",
+        "summary": "Endpoint to DELETE full-length reviews of a specific preprint. Admin users only.",
+        "required": true,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/full-reviews/{id}/{role}": {
+      "post": {
+        "responses": {},
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Full Review id",
+            "required": true,
+            "name": "id",
+            "in": "path"
+          },
+          {
+            "type": "string",
+            "description": "Role",
+            "required": true,
+            "name": "role",
+            "in": "path"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "pid": {
+                  "type": "string",
+                  "description": "Persona id"
+                }
+              },
+              "required": [
+                "pid"
+              ],
+              "additionalProperties": false
+            }
+          }
+        ],
+        "operationId": "PostFullReviewInvite",
+        "summary": "Endpoint to PUT one persona an invite to a review by ID from PREreview.",
+        "required": true
+      },
+      "delete": {
+        "responses": {},
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Full Review id",
+            "required": true,
+            "name": "id",
+            "in": "path"
+          },
+          {
+            "type": "string",
+            "description": "Role",
+            "required": true,
+            "name": "role",
+            "in": "path"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "pid": {
+                  "type": "string",
+                  "description": "Persona id"
+                }
+              },
+              "required": [
+                "pid"
+              ],
+              "additionalProperties": false
+            }
+          }
+        ],
+        "operationId": "DeleteFullReviewInvite",
+        "summary": "Endpoint to DELETE one persona from an invite by ID from PREreview.",
+        "required": true
+      }
+    },
+    "/full-reviews/{id}/{role}/{pid}": {
+      "post": {
+        "responses": {},
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Full Review id",
+            "required": true,
+            "name": "id",
+            "in": "path"
+          },
+          {
+            "type": "string",
+            "description": "Role",
+            "required": true,
+            "name": "role",
+            "in": "path"
+          },
+          {
+            "type": "string",
+            "description": "Persona id",
+            "required": true,
+            "name": "pid",
+            "in": "path"
+          }
+        ],
+        "operationId": "PostFullReviewInviteAccept",
+        "summary": "Endpoint to POST to accept one invite to collaborate on a FullReview.",
+        "required": true
+      }
+    },
+    "/events": {
+      "post": {
+        "responses": {},
+        "operationId": "PostEvents",
+        "summary": "Endpoint to POST a event.",
+        "parameters": []
+      },
+      "get": {
+        "responses": {},
+        "operationId": "GetEvents",
+        "summary": "Endpoint to GET all events.",
+        "parameters": []
+      }
+    },
+    "/events/{id}": {
+      "get": {
+        "responses": {},
+        "operationId": "GetEvent",
+        "summary": "Endpoint to GET a single event by ID.",
+        "required": true,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "put": {
+        "responses": {},
+        "operationId": "PutEvent",
+        "summary": "Endpoint to PUT a single event by ID.",
+        "required": true,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "delete": {
+        "responses": {},
+        "operationId": "DeleteEvent",
+        "summary": "Endpoint to DELETE a single event by ID.",
+        "required": true,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/badges": {
+      "post": {
+        "responses": {},
+        "operationId": "PostBadges",
+        "summary": "Endpoint to POST a badge.",
+        "parameters": []
+      },
+      "get": {
+        "responses": {},
+        "operationId": "GetBadges",
+        "summary": "Endpoint to GET all badges.",
+        "parameters": []
+      }
+    },
+    "/badges/{id}": {
+      "get": {
+        "responses": {},
+        "operationId": "GetBadge",
+        "summary": "Endpoint to GET a single badge by ID.",
+        "required": true,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "put": {
+        "responses": {},
+        "operationId": "PutBadge",
+        "summary": "Endpoint to PUT a single badge by ID.",
+        "required": true,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "delete": {
+        "responses": {},
+        "operationId": "DeleteBadge",
+        "summary": "Endpoint to DELETE a single badge by ID.",
+        "required": true,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/expertises": {
+      "post": {
+        "responses": {},
+        "operationId": "PostExpertises",
+        "summary": "Endpoint to POST a expertise.",
+        "parameters": []
+      },
+      "get": {
+        "responses": {},
+        "operationId": "GetExpertises",
+        "summary": "Endpoint to GET all expertises.",
+        "parameters": []
+      }
+    },
+    "/expertises/{id}": {
+      "get": {
+        "responses": {},
+        "operationId": "GetExpertise",
+        "summary": "Endpoint to GET a single expertise by ID.",
+        "required": true,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "put": {
+        "responses": {},
+        "operationId": "PutExpertise",
+        "summary": "Endpoint to PUT a single expertise by ID.",
+        "required": true,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "delete": {
+        "responses": {},
+        "operationId": "DeleteExpertise",
+        "summary": "Endpoint to DELETE a single expertise by ID.",
+        "required": true,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/groups": {
+      "post": {
+        "responses": {},
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name"
+              ],
+              "additionalProperties": false
+            }
+          }
+        ],
+        "operationId": "PostGroups",
+        "summary": "Endpoint to POST a new user group (where each group have varying levels of authorizations) to PREreview. Admin users only."
+      },
+      "get": {
+        "responses": {},
+        "parameters": [
+          {
+            "type": "integer",
+            "required": false,
+            "name": "start",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "minimum": 1,
+            "required": false,
+            "name": "end",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "required": false,
+            "name": "asc",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "sort_by",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "from",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "to",
+            "in": "query"
+          }
+        ],
+        "operationId": "GetGroups",
+        "summary": "Endpoint to GET user groups on PREreview. Different user groups have varying authorization levels of access to API methods."
+      }
+    },
+    "/groups/{id}": {
+      "get": {
+        "responses": {},
+        "operationId": "GetGroup",
+        "summary": "Endpoint to GET one user group by ID from PREreview. Admin users only.",
+        "required": true,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "delete": {
+        "responses": {},
+        "operationId": "DeleteGroup",
+        "summary": "Endpoint to DELETE one user group by ID from PREreview. Admin users only.",
+        "required": true,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/groups/{name}": {
+      "put": {
+        "responses": {},
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name"
+              ],
+              "additionalProperties": false
+            }
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "operationId": "PutGroup",
+        "summary": "Endpoint to PUT one user group by ID from PREreview. Admin users only.",
+        "required": true
+      }
+    },
+    "/groups/{id}/members": {
+      "delete": {
+        "responses": {},
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Group id",
+            "required": true,
+            "name": "id",
+            "in": "path"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "uid": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        ],
+        "operationId": "DeleteGroupMember",
+        "summary": "Endpoint to DELETE one user from a group by ID from PREreview. Admin users only.",
+        "required": true
+      }
+    },
+    "/groups/{id}/members/{uid}": {
+      "put": {
+        "responses": {},
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Group id",
+            "required": true,
+            "name": "id",
+            "in": "path"
+          },
+          {
+            "type": "string",
+            "description": "User id",
+            "required": true,
+            "name": "uid",
+            "in": "path"
+          }
+        ],
+        "operationId": "PutGroupMember",
+        "summary": "Endpoint to PUT one user to a group by ID from PREreview. Admin users only.",
+        "required": true
+      }
+    },
+    "/comments": {
+      "get": {
+        "responses": {},
+        "parameters": [
+          {
+            "type": "integer",
+            "required": false,
+            "name": "start",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "minimum": 1,
+            "required": false,
+            "name": "end",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "required": false,
+            "name": "asc",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "sort_by",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "from",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "to",
+            "in": "query"
+          }
+        ],
+        "operationId": "GetComments",
+        "summary": "Endpoint to GET all comments on all full-length reviews of preprints."
+      }
+    },
+    "/fullReviews/{fid}/comments": {
+      "get": {
+        "responses": {},
+        "parameters": [
+          {
+            "type": "integer",
+            "required": false,
+            "name": "start",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "minimum": 1,
+            "required": false,
+            "name": "end",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "required": false,
+            "name": "asc",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "sort_by",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "from",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "to",
+            "in": "query"
+          },
+          {
+            "name": "fid",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "operationId": "GetFullReviewComments",
+        "summary": "Endpoint to GET all comments related to a specific full-length review of a preprint."
+      },
+      "post": {
+        "responses": {},
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "contents": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "title",
+                "contents"
+              ],
+              "additionalProperties": false
+            }
+          },
+          {
+            "name": "fid",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "operationId": "PostComments",
+        "summary": "Endpoint to POST comments on full-length reviews of preprints. Returns a 201 if a comment has been successfully created."
+      }
+    },
+    "/comments/{id}": {
+      "get": {
+        "responses": {},
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "operationId": "GetComment",
+        "summary": "Endpoint to GET a specific comment.",
+        "required": true
+      },
+      "put": {
+        "responses": {},
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "contents": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "title",
+                "contents"
+              ],
+              "additionalProperties": false
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "operationId": "PutComment",
+        "summary": "Endpoint to PUT changes on a specific comment.",
+        "require": true
+      },
+      "delete": {
+        "responses": {},
+        "operationId": "DeleteComment",
+        "summary": "Endpoint to DELETE a comment.",
+        "required": true,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/communities": {
+      "post": {
+        "responses": {},
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "uuid": {
+                  "type": "string"
+                },
+                "slug": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "banner": {
+                  "type": "string"
+                },
+                "owners": {
+                  "type": "array",
+                  "items": {}
+                },
+                "twitter": {
+                  "type": "string",
+                  "pattern": "^#?[a-zA-Z0-9_]{1,15}$"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        ],
+        "operationId": "PostCommunities",
+        "summary": "Endpoint to POST a new community to PREreview. Admin users only."
+      },
+      "get": {
+        "responses": {},
+        "parameters": [
+          {
+            "type": "integer",
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "required": false,
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "required": false,
+            "name": "start",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "minimum": 1,
+            "required": false,
+            "name": "end",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "required": false,
+            "name": "asc",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "include_images",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "sort_by",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "from",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "to",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "tags",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "search",
+            "in": "query"
+          }
+        ],
+        "operationId": "GetCommunities",
+        "summary": "Endpoint to GET all the communities registered on PREreview, as well as their associated members and preprints."
+      }
+    },
+    "/communities/{id}": {
+      "get": {
+        "responses": {},
+        "parameters": [
+          {
+            "type": "integer",
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "required": false,
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "required": false,
+            "name": "start",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "minimum": 1,
+            "required": false,
+            "name": "end",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "required": false,
+            "name": "asc",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "include_images",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "sort_by",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "from",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "to",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "tags",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "search",
+            "in": "query"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "operationId": "GetCommunity",
+        "summary": "Endpoint to GET info on a community registered on PREreview, along with its associated members and preprints."
+      },
+      "put": {
+        "responses": {},
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "uuid": {
+                  "type": "string"
+                },
+                "slug": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "banner": {
+                  "type": "string"
+                },
+                "owners": {
+                  "type": "array",
+                  "items": {}
+                },
+                "twitter": {
+                  "type": "string",
+                  "pattern": "^#?[a-zA-Z0-9_]{1,15}$"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "operationId": "PutCommunity",
+        "summary": "Endpoint to PUT updates on a community registered on PREreview. Admin users only."
+      },
+      "delete": {
+        "responses": {},
+        "operationId": "DeleteCommunity",
+        "summary": "Endpoint to DELETE a community. Admin users only.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/communities/{id}/join-request": {
+      "post": {
+        "responses": {},
+        "operationId": "PostCommunityRequest",
+        "summary": "Endpoint to request to join a community.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/communities/{id}/members/{uid}": {
+      "put": {
+        "responses": {},
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Community id",
+            "required": true,
+            "name": "id",
+            "in": "path"
+          },
+          {
+            "type": "string",
+            "description": "User id",
+            "required": true,
+            "name": "uid",
+            "in": "path"
+          }
+        ],
+        "operationId": "PutCommunityMember",
+        "summary": "Endpoint to PUT one user to a community by ID from PREreview. Admin users only.",
+        "required": true
+      }
+    },
+    "/communities/{id}/members": {
+      "delete": {
+        "responses": {},
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "required": true,
+            "name": "uid",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Community id",
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "operationId": "DeleteCommunityMember",
+        "summary": "Endpoint to DELETE one user from a community by ID from PREreview. Admin users only.",
+        "required": true
+      }
+    },
+    "/communities/{id}/owners/{uid}": {
+      "put": {
+        "responses": {},
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Community id",
+            "required": true,
+            "name": "id",
+            "in": "path"
+          },
+          {
+            "type": "string",
+            "description": "User id",
+            "required": true,
+            "name": "uid",
+            "in": "path"
+          }
+        ],
+        "operationId": "PutCommunityOwner",
+        "summary": "Endpoint to PUT one owner to a community by ID from PREreview. Admin users only.",
+        "required": true
+      }
+    },
+    "/communities/{id}/owners": {
+      "delete": {
+        "responses": {},
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "required": true,
+            "name": "uid",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Community id",
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "operationId": "DeleteCommunityOwner",
+        "summary": "Endpoint to DELETE one owner from a community by ID from PREreview. Admin users only.",
+        "required": true
+      }
+    },
+    "/communities/{id}/events/{eid}": {
+      "put": {
+        "responses": {},
+        "operationId": "PutCommunityEvent",
+        "summary": "Endpoint to PUT events for a single community.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "eid",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/communities/{id}/events": {
+      "post": {
+        "responses": {},
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "start": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "end": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "isPrivate": {
+                  "type": "boolean"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "operationId": "PostCommunityEvent",
+        "summary": "Endpoint to POST events for a single community."
+      },
+      "delete": {
+        "responses": {},
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "required": false,
+            "name": "eid",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Community id",
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "operationId": "DeleteCommunityEvent",
+        "summary": "Endpoint to DELETE one event from a community by ID from PREreview.",
+        "required": true
+      }
+    },
+    "/communities/{id}/tags/{tid}": {
+      "put": {
+        "responses": {},
+        "operationId": "PutCommunityTag",
+        "summary": "Endpoint to PUT tags for a single community.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "tid",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/communities/{id}/tags": {
+      "post": {
+        "responses": {},
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "color": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "operationId": "PostCommunityTag",
+        "summary": "Endpoint to POST a tag for a single community."
+      },
+      "delete": {
+        "responses": {},
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "required": false,
+            "name": "tid",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Community id",
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "operationId": "DeleteCommunityTag",
+        "summary": "Endpoint to DELETE one tag from a community by ID from PREreview. Admin tags only.",
+        "required": true
+      }
+    },
+    "/personas": {
+      "get": {
+        "responses": {},
+        "parameters": [
+          {
+            "type": "integer",
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "required": false,
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "required": false,
+            "name": "asc",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "search",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "communities",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "badges",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {},
+            "required": false,
+            "name": "expertises",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "include_images",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "sort",
+            "in": "query"
+          }
+        ],
+        "operationId": "GetPersonas",
+        "summary": "Each user registered on the PREreview platform has two corresponding personas: one which has their public name and another which is anonymous. This endpoint GETs all personas on PREreview and the reviews attributed to each. Returns a 200 if successful, and an array of personas in the `data` attribute of the response body."
+      }
+    },
+    "/personas/{id}": {
+      "delete": {
+        "responses": {},
+        "operationId": "DeletePersonas",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "get": {
+        "responses": {},
+        "operationId": "GetPersona",
+        "description": "GET a single user persona. Returns a 200 if successful, and a single-member array of the persona object in the `data` attribute of the response body.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "put": {
+        "responses": {},
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "required": true,
+            "name": "id",
+            "in": "path"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "avatar": {
+                  "type": "string"
+                },
+                "bio": {
+                  "type": "string"
+                },
+                "badges": {
+                  "type": "array",
+                  "items": {}
+                },
+                "isLocked": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        ],
+        "operationId": "PutPersona",
+        "summary": "Endpoint to PUT one persona by ID. Admin users only.",
+        "required": true
+      }
+    },
+    "/personas/{id}/badges/{bid}": {
+      "put": {
+        "responses": {},
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Persona id",
+            "required": true,
+            "name": "id",
+            "in": "path"
+          },
+          {
+            "type": "string",
+            "description": "Badge id",
+            "required": true,
+            "name": "bid",
+            "in": "path"
+          }
+        ],
+        "operationId": "PutPersonaBadge",
+        "summary": "Endpoint to PUT one badge to a persona by ID from PREreview. Admin users only.",
+        "required": true
+      }
+    },
+    "/personas/{id}/badges": {
+      "delete": {
+        "responses": {},
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "required": false,
+            "name": "bid",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Persona id",
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "operationId": "DeletePersonaBadge",
+        "summary": "Endpoint to DELETE one badge from a persona by ID from PREreview. Admin users only.",
+        "required": true
+      }
+    },
+    "/personas/{id}/expertises/{bid}": {
+      "put": {
+        "responses": {},
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Persona id",
+            "required": true,
+            "name": "id",
+            "in": "path"
+          },
+          {
+            "type": "string",
+            "description": "Expertise id",
+            "required": true,
+            "name": "bid",
+            "in": "path"
+          }
+        ],
+        "operationId": "PutPersonaExpertise",
+        "summary": "Endpoint to PUT one expertise to a persona by ID from PREreview.",
+        "required": true
+      },
+      "delete": {
+        "responses": {},
+        "operationId": "DeletePersonaExpertise",
+        "summary": "Endpoint to DELETE one expertise from a persona by ID from PREreview.",
+        "required": true,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "bid",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/rapid-reviews": {
+      "post": {
+        "responses": {},
+        "operationId": "PostRapidReviews",
+        "summary": "Endpoint to POST a rapid review.",
+        "parameters": []
+      },
+      "get": {
+        "responses": {},
+        "parameters": [
+          {
+            "type": "integer",
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "required": false,
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "required": false,
+            "name": "asc",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "required": false,
+            "name": "is_published",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "include_images",
+            "in": "query"
+          }
+        ],
+        "operationId": "GetRapidReviews",
+        "summary": "Endpoint to GET all rapid reviews."
+      }
+    },
+    "/preprints/{pid}/rapid-reviews": {
+      "get": {
+        "responses": {},
+        "parameters": [
+          {
+            "type": "integer",
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "required": false,
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "required": false,
+            "name": "asc",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "required": false,
+            "name": "is_published",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "include_images",
+            "in": "query"
+          },
+          {
+            "name": "pid",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "operationId": "GetPreprintRapidReviews",
+        "summary": "Endpoint to GET all rapid reviews of a single preprint.",
+        "required": true
+      }
+    },
+    "/rapid-reviews/{id}": {
+      "get": {
+        "responses": {},
+        "operationId": "GetRapidReview",
+        "summary": "Endpoint to GET one rapid review by ID.",
+        "required": true,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "put": {
+        "responses": {},
+        "operationId": "PutRapidReview",
+        "summary": "Endpoint to PUT one rapid review by ID.",
+        "required": true,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "delete": {
+        "responses": {},
+        "operationId": "DeleteRapidReview",
+        "summary": "Endpoint to DELETE one rapid review by ID.",
+        "required": true,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/reports": {
+      "get": {
+        "responses": {},
+        "parameters": [
+          {
+            "type": "integer",
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "required": false,
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "required": false,
+            "name": "asc",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "types",
+            "in": "query"
+          }
+        ],
+        "operationId": "GetReports",
+        "summary": "Endpoint to GET all reports."
+      }
+    },
+    "/reports/{id}": {
+      "get": {
+        "responses": {},
+        "parameters": [
+          {
+            "type": "integer",
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "required": false,
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "required": false,
+            "name": "asc",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "types",
+            "in": "query"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "operationId": "GetReport",
+        "summary": "Endpoint to GET a specific report."
+      },
+      "put": {
+        "responses": {},
+        "operationId": "PutReport",
+        "summary": "Endpoint to PUT a report.",
+        "required": true,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "delete": {
+        "responses": {},
+        "operationId": "DeleteReport",
+        "summary": "Endpoint to DELETE a report.",
+        "required": true,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/reported/{id}": {
+      "get": {
+        "responses": {},
+        "parameters": [
+          {
+            "type": "integer",
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "required": false,
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "required": false,
+            "name": "asc",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "types",
+            "in": "query"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "operationId": "GetReported",
+        "summary": "Endpoint to GET a report of a specific entity.",
+        "required": true
+      },
+      "put": {
+        "responses": {},
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "operationId": "PutReported",
+        "summary": "Endpoint to PUT a report of a specific entity.",
+        "required": true
+      }
+    },
+    "/preprints/{pid}/requests": {
+      "post": {
+        "responses": {},
+        "operationId": "PostRequests",
+        "summary": "Endpoint to POST a request for review.",
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "get": {
+        "responses": {},
+        "operationId": "GetPreprintRequests",
+        "summary": "Endpoint to GET all requests for review of a single preprint.",
+        "required": true,
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/requests": {
+      "get": {
+        "responses": {},
+        "operationId": "GetRequests",
+        "summary": "Endpoint to GET all requests for review.",
+        "parameters": []
+      }
+    },
+    "/requests/{id}": {
+      "get": {
+        "responses": {},
+        "operationId": "GetRequest",
+        "summary": "Endpoint to GET one request for review by ID.",
+        "required": true,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "delete": {
+        "responses": {},
+        "operationId": "DeleteRequest",
+        "summary": "Endpoint to DELETE one request for review by ID.",
+        "required": true,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/tags": {
+      "post": {
+        "responses": {},
+        "operationId": "PostTags",
+        "summary": "Endpoint to POST a tag.",
+        "parameters": []
+      },
+      "get": {
+        "responses": {},
+        "operationId": "GetTags",
+        "summary": "Endpoint to GET all tags.",
+        "parameters": []
+      }
+    },
+    "/tags/{id}": {
+      "get": {
+        "responses": {},
+        "operationId": "GetTag",
+        "summary": "Endpoint to GET a single tag by ID.",
+        "required": true,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "put": {
+        "responses": {},
+        "operationId": "PutTag",
+        "summary": "Endpoint to PUT a single tag by ID.",
+        "required": true,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "delete": {
+        "responses": {},
+        "operationId": "DeleteTag",
+        "summary": "Endpoint to DELETE a single tag by ID.",
+        "required": true,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/templates": {
+      "get": {
+        "responses": {},
+        "parameters": [
+          {
+            "type": "integer",
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "required": false,
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "required": false,
+            "name": "desc",
+            "in": "query"
+          }
+        ],
+        "operationId": "GetTemplates",
+        "summary": "Endpoint to GET all templates on all communities."
+      },
+      "post": {
+        "responses": {},
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "contents": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "title",
+                "contents"
+              ],
+              "additionalProperties": false
+            }
+          }
+        ],
+        "operationId": "PostTemplates",
+        "summary": "Endpoint to POST templates on full-length reviews of preprints. Returns a 201 if a template has been successfully created."
+      },
+      "delete": {
+        "responses": {},
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Template id",
+            "required": true,
+            "name": "id",
+            "in": "query"
+          }
+        ],
+        "operationId": "DeleteTemplate",
+        "summary": "Endpoint to DELETE a template."
+      }
+    },
+    "/communities/{cid}/templates": {
+      "get": {
+        "responses": {},
+        "parameters": [
+          {
+            "type": "integer",
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "required": false,
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "required": false,
+            "name": "desc",
+            "in": "query"
+          },
+          {
+            "name": "cid",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "operationId": "GetCommunityTemplates",
+        "summary": "Endpoint to GET all templates related to a specific community."
+      },
+      "post": {
+        "responses": {},
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "contents": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "title",
+                "contents"
+              ],
+              "additionalProperties": false
+            }
+          },
+          {
+            "name": "cid",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "operationId": "PostCommunityTemplates",
+        "summary": "Endpoint to POST templates within a community on full-length reviews of preprints. Returns a 201 if a template has been successfully created."
+      },
+      "delete": {
+        "responses": {},
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Template id",
+            "required": true,
+            "name": "id",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Community id",
+            "required": true,
+            "name": "cid",
+            "in": "path"
+          }
+        ],
+        "operationId": "DeleteCommunityTemplates",
+        "summary": "Endpoint to DELETE a template from a community."
+      }
+    },
+    "/users/{uid}/templates": {
+      "get": {
+        "responses": {},
+        "parameters": [
+          {
+            "type": "integer",
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "required": false,
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "required": false,
+            "name": "desc",
+            "in": "query"
+          },
+          {
+            "name": "uid",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "operationId": "GetUserTemplates",
+        "summary": "Endpoint to GET all templates related to a specific community."
+      }
+    },
+    "/templates/{id}": {
+      "get": {
+        "responses": {},
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "operationId": "GetTemplate",
+        "summary": "Endpoint to GET a specific template.",
+        "required": true
+      },
+      "put": {
+        "responses": {},
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "contents": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "title",
+                "contents"
+              ],
+              "additionalProperties": false
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "operationId": "PutTemplate",
+        "summary": "Endpoint to PUT changes on a specific template.",
+        "require": true
+      }
+    },
+    "/notifications/{uid}": {
+      "get": {
+        "responses": {},
+        "operationId": "GetUserNotifications",
+        "summary": "Endpoint to GET all notifications for a specific user. If successful, returns a 200 and an array of notifications in the `data` property of the response body.",
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    }
+  },
+  "tags": []
+}
