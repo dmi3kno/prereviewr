@@ -3,4 +3,5 @@
           prereviewr.apiname=Sys.getenv("PREREVIEW_APP"),
           prereviewr.apikey=Sys.getenv("PREREVIEW_KEY"),
           prereviewr.delay=3)
+  validate_authentication()
 }

@@ -1,0 +1,98 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# prereviewr <a href='https://dmi3kno.github.io/prereviewr'><img src='man/figures/logo.png' align="right" height="200" /></a>
+
+<!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+<!-- badges: end -->
+
+The goal of prereviewr is to use the official API to access (pre-)reviews from PREreview.org
+
+>PREreview's mission is to bring more equity and transparency to scholarly peer review by supporting and empowering communities of researchers, particularly those at early stages of their career (ECRs) and historically excluded, to review preprints in a process that is rewarding to them.
+
+PREreview.org allows anyone to request a review for any published preprint and submit reviews for preprints contributed by other users. Because reviews are done prior to publication in an academic journal they are called "(pre-)reviews". Crowd-sourcing reviews prior to publication enables "constructive feedback to preprints at a point in time in which it is needed" ([PREreview.org](https://content.prereview.org/mission/)). 
+
+## Installation
+
+You can install the development version of prereviewr from [Github](https://github.com/dmi3kno/prereviewr) with:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("dmi3kno/prereviewr")
+```
+
+The package subscribes to [polite](https://github.com/dmi3kno/polite) web-scraping principles and therefore the requests are made with authentication and an explicit user-agent, requests are delayed, responses are memoised. The permission to scrape is granted by [official API](https://content.prereview.org/api/). The package only accesses the endpoints allowed by the API and does not perform any scraping of webpages.
+
+## Authentication
+
+Registration of API token on PREreview.org in free. If you are submitting preprints or reviews to the platform, you already have an account. Otherwise, go ahead and register. Then proceed to your [API settings](https://prereview.org/settings/api). There you can create a valid API key. Then you need to add the following two lines into your `.Renviron` using `usethis::edit_r_environ()`
+
+``` r
+PREREVIEW_APP=YOURAPPNAME
+PREREVIEW_KEY=YOUR-KEY-FOUR-PARTS
+```
+Restart R and you should be good to go.
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example}
+library(prereviewr)
+## basic example code
+```
+
+### Preprints
+
+You can fetch 10 latest preprints submitted to PREreview.org. The function returns a tibble with one row per preprint. There are some (so far unparsed) list columns which contain information about reviews
+
+```{r preprints}
+get_preprints()
+```
+
+It is also possible to search
+
+```{r preprints-search}
+get_preprints("perepolkin")
+```
+
+Individual preprint can be fetched with the following command. You can use the preprint DOI or PREreview UUID.
+
+```{r preprint}
+#get_preprint("ac0dc5be-4e85-424c-8659-d9c588b7dbc5")
+get_preprint("10.31219/osf.io/enzgs")
+```
+
+### Reviews
+
+You can also fetch to latest (rapid) reviews
+
+```{r rapid-reviews}
+get_reviews()
+```
+
+Not all rapid reviews will be accompanied by a full review. The latest full reviews can be fetched with
+
+```{r full-reviews}
+get_reviews(full=TRUE)
+```
+
+If you are eagerly waiting for reviews for a preprint of interest you can check if any reviews have been recently submitted with
+
+```{r}
+get_preprint_reviews("0043ad51-5bb9-4f67-9c70-617ca5e8efd9")
+```
+

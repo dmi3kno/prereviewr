@@ -1,22 +1,19 @@
 Package: prereviewr
-Title: What the Package Does (One Line, Title Case)
+Title: Access prereviews on PREreview.org
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Dmytro",
+           family = "Perepolkin",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+           email = "dperepolkin@gmail.com",
+           comment = c(ORCID = "0000-0001-8558-6183"))
+Description: Use prereview.org API to access preprints and associated
+    prereviews.
 License: MIT + file LICENSE
+URL: https://github.com/dmi3kno/prereviewr
+BugReports: https://github.com/dmi3kno/prereviewr/issues
 Encoding: UTF-8
+Language: en
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
-Imports: 
-    httr,
-    memoise,
-    tibble,
-    tidyr
-URL: https://github.com/dmi3kno/prereviewr
-BugReports: https://github.com/dmi3kno/prereviewr/issues
