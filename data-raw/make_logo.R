@@ -7,7 +7,7 @@ pkglogo <- image_read("data-raw/prereview-logo.png") %>%
 pkglogo
 
 bg_color <- "#ffffff"
-bg_color2 <- "#F4FFFD"
+bg_color2 <- "#F3F6F4"
 fg_color <- "#465362"
 txt_color <- "#011936"
 
